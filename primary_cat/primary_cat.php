@@ -90,10 +90,23 @@ class primary_cat
 
     function add_admin_pages() {
         add_menu_page( 'Primary Catageory', 'Primary Catageory', 'manage_options', 'primary_cat', array( $this, 'admin_index' ), 'dashicons-store', 110 );
+
+        add_menu_page( 'View Primary Catageories', 'View Primary Catageories', 'manage_options', 'view_primary_cat', array( $this, 'admin_view' ), 'dashicons-admin-page', 110 );
+
+
+
+        
     }
+
+
 
     public function admin_index() {
         require_once plugin_dir_path( __FILE__ ) . 'templates/admin.php';
+        
+    }
+
+    public function admin_view() {
+        require_once plugin_dir_path( __FILE__ ) . 'templates/view.php';
         
     }
     

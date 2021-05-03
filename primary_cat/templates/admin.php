@@ -34,7 +34,7 @@
 
           <?php echo $msg;?>
 
-            <h2>Please Choose a primary category for a post</h2>
+            <h2>Please choose a primary category for a post</h2>
         
                 <h2><?php _e( 'Categories:', 'textdomain' ); ?></h2>
                  <form action="<?php echo $_SERVER['PHP_SELF']; ?>?page=primary_cat" method="post">
@@ -72,9 +72,18 @@
 
                      ?>
 
-                    <input type="submit" name="submit" value="view" />
+                    <input type="submit" name="submit" value="Create" />
                 </form>
             </div>
-        </div>
+
+
+            <div class="wrap">
+
+
+
+            </div>
+
+
+        
       </body>
 </html>
