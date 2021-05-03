@@ -9,10 +9,14 @@
           <?php  
 
           global $wpdb;
-          $msg = "Form Data Saved";
+          
 
           if(isset($_POST['submit'])) {
-            print_r($_REQUEST);
+            $msg = "Primary Category Saved";
+            ?><h1 style="color: blue"><?php echo $msg;?></h1><?php
+            ?><p style="color: green"><?php print_r($_REQUEST);?></p><?php
+            
+
 
 
           $table = 'wp_posts';
@@ -31,8 +35,6 @@
           }
 
           ?>
-
-          <?php echo $msg;?>
 
             <h2>Please choose a primary category for a post</h2>
         
