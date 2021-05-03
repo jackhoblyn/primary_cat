@@ -19,40 +19,29 @@ Text Domain: primary_category
 
 defined ( 'ABSPATH' ) or die("Plugin Error, please contact admin");
 
-//Gives access to functionality from autoload file
-
-
-
 
 class primary_cat 
 {
-
     public $plugin;
 
     function activate() {
+        //Create primary_category field on posts
         global $wpdb;
         $wpdb->query("ALTER TABLE wp_posts ADD primary_category int NOT NULL DEFAULT 1" );
-        //require_once plugin_dir_path( __FILE__ ) . 'inc/primary_category_activate.php';
+        
     }
 
     function deactivate() {
+        //Remove primary_category field on posts
         global $wpdb;
         $wpdb->query("ALTER TABLE wp_posts DROP COLUMN primary_category" );
-        //require_once plugin_dir_path( __FILE__ ) . 'inc/primary_category_deactivate.php';
+       
     }
 
-    // function uninstall() {
-        
-    // }
 
      function __construct() {
-        //upon construction, search for custom_post_type function in $this class
-        add_action('init', array($this, 'custom_post_type') );
-
         $this->plugin = plugin_basename( __FILE__ );
      }
-
-    // public $plugin;
 
     function register() {
         add_action('admin_enqueue_scripts', array( $this, 'enqueue' ) );
@@ -67,38 +56,17 @@ class primary_cat
         return $links;
     }
 
-
-    function custom_post_type() {
-        register_post_type('book', ['public' => true, 'label' => 'Books'] );
-    }
-
-    // //Adding scripts - css
     function enqueue() {
         wp_enqueue_style('mypluginstyle', plugins_url('/assets/style.css', __FILE__ ) );
         wp_enqueue_script('mypluginscript', plugins_url('/assets/myscript.js', __FILE__ ) );
     }
 
-    // // function custom_category_type() {
-
-    // //     register_category_type('primary', ['public' => true, 'label' => 'Books'] );
-    // // }
-
-    // public function activate() {
-    //     //require_once plugin_dir_path( __FILE__ ) . 'inc/jackPLugin_plugin_activate.php';
-    //     Activate::activate();
-    // }
-
     function add_admin_pages() {
-        add_menu_page( 'Primary Catageory', 'Primary Catageory', 'manage_options', 'primary_cat', array( $this, 'admin_index' ), 'dashicons-store', 110 );
+        add_menu_page( 'Primary Catageory', 'Add primary catageory', 'manage_options', 'primary_cat', array( $this, 'admin_index' ), 'dashicons-store', 110 );
 
-        add_menu_page( 'View Primary Catageories', 'View Primary Catageories', 'manage_options', 'view_primary_cat', array( $this, 'admin_view' ), 'dashicons-admin-page', 110 );
+        add_menu_page( 'View Primary Catageories', 'View primary categories/post', 'manage_options', 'view_primary_cat', array( $this, 'admin_view' ), 'dashicons-admin-page', 110 );
 
-
-
-        
     }
-
-
 
     public function admin_index() {
         require_once plugin_dir_path( __FILE__ ) . 'templates/admin.php';
