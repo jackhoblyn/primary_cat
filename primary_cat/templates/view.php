@@ -8,8 +8,7 @@
 
           <?php 
 
-              
-              $msg = "Form Data Saved";
+            
 
               if(isset($_POST['submit'])) {
                 print_r($_REQUEST);
@@ -20,17 +19,20 @@
 
                 $cposts = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM wp_posts WHERE primary_category = %d", $pcat ) );
 
-                foreach ( $cposts as $cpost ) {
-                    echo $cpost->post_title;
+                foreach ( $cposts as $cpost ) { ?>
+                    <ul><a href="<?php echo esc_url( get_permalink($cpost->ID) ); ?>"><h1 style="color: green"><?php echo $cpost->post_title; ?></h1></a></ul><?php
                 }
+
+
+
+                
                 //Get all posts in a list where $post->primary_cat = cat->id
 
                 }
 
               ?>
 
-              <?php echo $msg;?>
-
+             
 
              <h2>Please choose a primary category to see all posts associated with it</h2>
 
